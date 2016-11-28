@@ -14,7 +14,7 @@ public class AboutConditionals {
 		int x = 1;
 		if (true) 
 			x++;
-		assertEquals(x, __);
+		assertEquals(x, 2);
 	}
 	
 	@Koan
@@ -26,7 +26,7 @@ public class AboutConditionals {
 			x++;
 		else
 			x--;
-		assertEquals(x, __);
+		assertEquals(x, 0);
 	}
 	
 	@Koan
@@ -41,7 +41,7 @@ public class AboutConditionals {
 			x = 10;
 		else
 			x--;
-		assertEquals(x, __);
+		assertEquals(x, 10);
 	}
 	
 	@Koan
@@ -55,7 +55,7 @@ public class AboutConditionals {
 			if (otherBooleanCondition) x = 10;
 		else x--;
 		// Where does this else belong to!?
-		assertEquals(x, __);
+		assertEquals(x, 10);
 	}
 	
 	@Koan
@@ -69,7 +69,7 @@ public class AboutConditionals {
 		}
 		// There are different opinions on where the curly braces go...
 		// But as long as you put them here. You avoid problems as seen above.
-		assertEquals(x, __);
+		assertEquals(x,2);
 	} 
 	
 	@Koan 
@@ -86,7 +86,7 @@ public class AboutConditionals {
 			default:
 				result += "Nothing";
 		}
-		assertEquals(result, __);
+		assertEquals(result, "Basic One");
 	}
 	
 	@Koan 
@@ -101,7 +101,7 @@ public class AboutConditionals {
 			default:
 				result += "Nothing";
 		}
-		assertEquals(result, __);
+		assertEquals(result, "Basic OneTwoNothing");
 	}
 	
 	@Koan 
@@ -116,7 +116,7 @@ public class AboutConditionals {
 			case 2:
 				result += "Two";
 		}
-		assertEquals(result, __);
+		assertEquals(result, "Basic NothingTwo");
 	}
 	
 	@Koan 
@@ -124,6 +124,8 @@ public class AboutConditionals {
 		int i = 5;
 		// What happens if you remove the 'final' modifier?
 		// What does this mean for case values?
+		
+		// A: the switch statement complains that a constant value is required
 		final int caseOne = 1;
 		String result = "Basic ";
 		switch(i) {
@@ -133,15 +135,15 @@ public class AboutConditionals {
 			default:
 				result += "Nothing";
 		}
-		assertEquals(result, __);
+		assertEquals(result, "Basic Nothing");
 	}
 	
 	@Koan 
 	public void switchStatementSwitchValues() {
 		// Try different (primitive) types for 'c'
-		// Which types do compile?
-		// Does boxing work?
-		byte c = 'a';
+		// Which types do compile? A: char works, beyond that, there are no applicable primitive types
+		// Does boxing work? A: Yes
+		char c = 'a';
 		String result = "Basic ";
 		switch(c) {
 			case 'a':
@@ -150,6 +152,6 @@ public class AboutConditionals {
 			default:
 				result += "Nothing";
 		}
-		assertEquals(result, __);
+		assertEquals(result, "Basic One");
 	}
 }
