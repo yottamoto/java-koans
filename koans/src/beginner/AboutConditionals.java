@@ -14,7 +14,7 @@ public class AboutConditionals {
 		int x = 1;
 		if (true) 
 			x++;
-		assertEquals(x, __);
+		assertEquals(x, 2);
 	}
 	
 	@Koan
@@ -26,7 +26,7 @@ public class AboutConditionals {
 			x++;
 		else
 			x--;
-		assertEquals(x, __);
+		assertEquals(x, 0);
 	}
 	
 	@Koan
@@ -41,7 +41,7 @@ public class AboutConditionals {
 			x = 10;
 		else
 			x--;
-		assertEquals(x, __);
+		assertEquals(x, 10);
 	}
 	
 	@Koan
@@ -55,7 +55,8 @@ public class AboutConditionals {
 			if (otherBooleanCondition) x = 10;
 		else x--;
 		// Where does this else belong to!?
-		assertEquals(x, __);
+		// without braces, the else does not belong to the first if!
+		assertEquals(x, 10);
 	}
 	
 	@Koan
@@ -69,7 +70,7 @@ public class AboutConditionals {
 		}
 		// There are different opinions on where the curly braces go...
 		// But as long as you put them here. You avoid problems as seen above.
-		assertEquals(x, __);
+		assertEquals(x, 2);
 	} 
 	
 	@Koan 
@@ -86,7 +87,7 @@ public class AboutConditionals {
 			default:
 				result += "Nothing";
 		}
-		assertEquals(result, __);
+		assertEquals(result, "Basic One");
 	}
 	
 	@Koan 
@@ -101,7 +102,7 @@ public class AboutConditionals {
 			default:
 				result += "Nothing";
 		}
-		assertEquals(result, __);
+		assertEquals(result, "Basic OneTwoNothing");
 	}
 	
 	@Koan 
@@ -116,7 +117,8 @@ public class AboutConditionals {
 			case 2:
 				result += "Two";
 		}
-		assertEquals(result, __);
+		// Jumps to default because first case not triggered, continues to case 2
+		assertEquals(result, "Basic NothingTwo");
 	}
 	
 	@Koan 
@@ -124,6 +126,10 @@ public class AboutConditionals {
 		int i = 5;
 		// What happens if you remove the 'final' modifier?
 		// What does this mean for case values?
+
+		// if caseOne is not final, cannot compile; constant expression required
+		// my guess: required to prevent the switch constant being modified in the case statements,
+		// leading to unwanted side-effects
 		final int caseOne = 1;
 		String result = "Basic ";
 		switch(i) {
@@ -133,7 +139,7 @@ public class AboutConditionals {
 			default:
 				result += "Nothing";
 		}
-		assertEquals(result, __);
+		assertEquals(result, "Basic Nothing");
 	}
 	
 	@Koan 
@@ -141,7 +147,10 @@ public class AboutConditionals {
 		// Try different (primitive) types for 'c'
 		// Which types do compile?
 		// Does boxing work?
-		byte c = 'a';
+
+		// works: byte, char, Byte,
+		// does not work: Char, String
+		char c = 'a';
 		String result = "Basic ";
 		switch(c) {
 			case 'a':
@@ -150,6 +159,6 @@ public class AboutConditionals {
 			default:
 				result += "Nothing";
 		}
-		assertEquals(result, __);
+		assertEquals(result, "Basic One");
 	}
 }
