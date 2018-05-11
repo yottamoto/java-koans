@@ -2,156 +2,199 @@ package beginner;
 
 
 import com.sandwich.koan.Koan;
+
 import static com.sandwich.koan.constant.KoanConstants.__;
 import static com.sandwich.util.Assert.assertEquals;
 
 
 public class AboutConditionals {
 
-	@Koan
-	public void basicIfWithoutCurly(){
-		// Ifs without curly braces are ugly and not recommended but still valid:
-		int x = 1;
-		if (true) 
-			x++;
-		assertEquals(x, 2);
-	}
-	
-	@Koan
-	public void basicIfElseWithoutCurly(){
-		// Ifs without curly braces are ugly and not recommended but still valid:
-		int x = 1;
-		boolean secretBoolean = false;
-		if (secretBoolean) 
-			x++;
-		else
-			x--;
-		assertEquals(x, 0);
-	}
-	
-	@Koan
-	public void basicIfElseIfElseWithoutCurly(){
-		int x = 1;
-		boolean secretBoolean = false;
-		boolean otherBooleanCondition = true;
-		// Ifs without curly braces are ugly and not recommended but still valid:
-		if (secretBoolean) 
-			x++;
-		else if (otherBooleanCondition)
-			x = 10;
-		else
-			x--;
-		assertEquals(x, 10);
-	}
-	
-	@Koan
-	public void nestedIfsWithoutCurlysAreReallyMisleading() {
-		// Why are these ugly you ask? Well, try for yourself
-		int x = 1;
-		boolean secretBoolean = false;
-		boolean otherBooleanCondition = true;
-		// Ifs without curly braces are ugly and not recommended but still valid:
-		if (secretBoolean)  x++;
-			if (otherBooleanCondition) x = 10;
-		else x--;
-		// Where does this else belong to!?
-		assertEquals(x, 10);
-	}
-	
-	@Koan
-	public void ifAsIntended() {
-		boolean secretBoolean = true;
-		int x = 1;
-		if (secretBoolean) {
-			x++;
-		} else {
-			x = 0;
-		}
-		// There are different opinions on where the curly braces go...
-		// But as long as you put them here. You avoid problems as seen above.
-		assertEquals(x,2);
-	} 
-	
-	@Koan 
-	public void basicSwitchStatement() {
-		int i = 1;
-		String result = "Basic ";
-		switch(i) {
-			case 1:
-				result += "One";
-				break;
-			case 2:
-				result += "Two";
-				break;
-			default:
-				result += "Nothing";
-		}
-		assertEquals(result, "Basic One");
-	}
-	
-	@Koan 
-	public void switchStatementFallThrough() {
-		int i = 1;
-		String result = "Basic ";
-		switch(i) {
-			case 1:
-				result += "One";
-			case 2:
-				result += "Two";
-			default:
-				result += "Nothing";
-		}
-		assertEquals(result, "Basic OneTwoNothing");
-	}
-	
-	@Koan 
-	public void switchStatementCrazyFallThrough() {
-		int i = 5;
-		String result = "Basic ";
-		switch(i) {
-			case 1:
-				result += "One";
-			default:
-				result += "Nothing";
-			case 2:
-				result += "Two";
-		}
-		assertEquals(result, "Basic NothingTwo");
-	}
-	
-	@Koan 
-	public void switchStatementConstants() {
-		int i = 5;
-		// What happens if you remove the 'final' modifier?
-		// What does this mean for case values?
-		
-		// A: the switch statement complains that a constant value is required
-		final int caseOne = 1;
-		String result = "Basic ";
-		switch(i) {
-			case caseOne:
-				result += "One";
-				break;
-			default:
-				result += "Nothing";
-		}
-		assertEquals(result, "Basic Nothing");
-	}
-	
-	@Koan 
-	public void switchStatementSwitchValues() {
-		// Try different (primitive) types for 'c'
-		// Which types do compile? A: char works, beyond that, there are no applicable primitive types
-		// Does boxing work? A: Yes
-		char c = 'a';
-		String result = "Basic ";
-		switch(c) {
-			case 'a':
-				result += "One";
-				break;
-			default:
-				result += "Nothing";
-		}
-		assertEquals(result, "Basic One");
-	}
+    @Koan
+    public void basicIf() {
+        int x = 1;
+        if (true) {
+            x++;
+        }
+        assertEquals(x, __);
+    }
+
+    @Koan
+    public void basicIfElse() {
+        int x = 1;
+        boolean secretBoolean = false;
+        if (secretBoolean) {
+            x++;
+        } else {
+            x--;
+        }
+        assertEquals(x, __);
+    }
+
+    @Koan
+    public void basicIfElseIfElse() {
+        int x = 1;
+        boolean secretBoolean = false;
+        boolean otherBooleanCondition = true;
+        if (secretBoolean) {
+            x++;
+        } else if (otherBooleanCondition) {
+            x = 10;
+        } else {
+            x--;
+        }
+        assertEquals(x, __);
+    }
+
+    @Koan
+    public void nestedIfsWithoutCurlysAreReallyMisleading() {
+        int x = 1;
+        boolean secretBoolean = false;
+        boolean otherBooleanCondition = true;
+        // Curly braces after an "if" or "else" are not required...
+        if (secretBoolean)
+            x++;
+            if (otherBooleanCondition)
+                x = 10;
+        else
+            x--;
+        // ...but they are recommended.
+        assertEquals(x, __);
+    }
+
+    @Koan
+    public void ifAsIntended() {
+        int x = 1;
+        boolean secretBoolean = false;
+        boolean otherBooleanCondition = true;
+        // Adding curly braces avoids the "dangling else" problem seen
+        // above.
+        if (secretBoolean) {
+            x++;
+            if (otherBooleanCondition) {
+                x = 10;
+            }
+        } else {
+            x--;
+        }
+        assertEquals(x, __);
+    }
+
+    @Koan
+    public void basicSwitchStatement() {
+        int i = 1;
+        String result = "Basic ";
+        switch (i) {
+            case 1:
+                result += "One";
+                break;
+            case 2:
+                result += "Two";
+                break;
+            default:
+                result += "Nothing";
+        }
+        assertEquals(result, __);
+    }
+
+    @Koan
+    public void switchStatementFallThrough() {
+        int i = 1;
+        String result = "Basic ";
+        switch (i) {
+            case 1:
+                result += "One";
+            case 2:
+                result += "Two";
+            default:
+                result += "Nothing";
+        }
+        assertEquals(result, __);
+    }
+
+    @Koan
+    public void switchStatementCrazyFallThrough() {
+        int i = 5;
+        String result = "Basic ";
+        switch (i) {
+            case 1:
+                result += "One";
+            default:
+                result += "Nothing";
+            case 2:
+                result += "Two";
+        }
+        assertEquals(result, __);
+    }
+
+    @Koan
+    public void switchStatementConstants() {
+        int i = 5;
+        // What happens if you remove the 'final' modifier?
+        // What does this mean for case values?
+        final int caseOne = 1;
+        String result = "Basic ";
+        switch (i) {
+            case caseOne:
+                result += "One";
+                break;
+            default:
+                result += "Nothing";
+        }
+        assertEquals(result, __);
+    }
+
+    @Koan
+    public void switchStatementSwitchValues() {
+        // Try different (primitive) types for 'c'
+        // Which types do compile?
+        // Does boxing work?
+        char c = 'a';
+        String result = "Basic ";
+        switch (c) {
+            case 'a':
+                result += "One";
+                break;
+            default:
+                result += "Nothing";
+        }
+        assertEquals(result, __);
+    }
+
+    @Koan
+    public void shortCircuit() {
+        Counter trueCount = new Counter(true);
+        Counter falseCount = new Counter(false);
+        String x = "Hai";
+        if (trueCount.count() || falseCount.count()) {
+            x = "kthxbai";
+        }
+        assertEquals(x, __);
+        assertEquals(trueCount.count, __);
+        assertEquals(falseCount.count, __);
+    }
+    
+    @Koan
+    public void bitwise() {
+        Counter trueCount = new Counter(true);
+        Counter falseCount = new Counter(false);
+        String x = "Hai";
+        if (trueCount.count() | falseCount.count()) {
+            x = "kthxbai";
+        }
+        assertEquals(x, __);
+        assertEquals(trueCount.count, __);
+        assertEquals(falseCount.count, __);
+    }
+    
+    class Counter {
+        boolean returnValue;
+        int count = 0;
+        Counter(boolean returnValue) { 
+            this.returnValue = returnValue;
+        }
+        boolean count() {
+            count++;
+            return returnValue;
+        }
+    }
 }
