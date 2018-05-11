@@ -12,7 +12,7 @@ public class AboutExceptions {
 		throw new IOException();
 	}
 	
-	@Koan
+	@Koan 
 	public void catchCheckedExceptions() {
 		String s;
 		try {
@@ -89,9 +89,8 @@ public class AboutExceptions {
 	public void returnInFinallyBlock() {
 		StringBuilder whatHappened = new StringBuilder();
 		// Which value will be returned here?
-		// not as I first expected: whatHappened is not returned, but the constant value in finally's return
 		assertEquals(returnStatementsEverywhere(whatHappened), "from finally");
-		assertEquals(whatHappened.toString(), "try, catch, finally");
+		assertEquals(whatHappened.toString(), "try, catch, finally" );
 	}
 	
 	private void doUncheckedStuff() {
@@ -101,11 +100,10 @@ public class AboutExceptions {
 	@Koan
 	public void catchUncheckedExceptions() {
 		// What do you need to do to catch the unchecked exception?
-		// just catch it!
 		try {
-			doUncheckedStuff();
+			doUncheckedStuff();			
 		} catch (Exception e) {
-			System.out.println("Caught!");
+			// just catch it?
 		}
 	}
 	
@@ -128,7 +126,6 @@ public class AboutExceptions {
 		} catch(ParentException e) {
 			s = "ParentException";
 		}
-		//The specific instance thrown is a child exception, which is a subclass of the parent exception
 		assertEquals(s, "ChildException");
 	}	
 
@@ -141,7 +138,7 @@ public class AboutExceptions {
 		} catch (IllegalArgumentException ex) {
 			s = "caught an IllegalArgumentException";
 		}
-		assertEquals(s,"caught an IllegalArgumentException");
+		assertEquals(s, "caught an IllegalArgumentException");
 	}
 	
 	@Koan

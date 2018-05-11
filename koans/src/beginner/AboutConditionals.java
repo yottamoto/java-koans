@@ -55,7 +55,6 @@ public class AboutConditionals {
 			if (otherBooleanCondition) x = 10;
 		else x--;
 		// Where does this else belong to!?
-		// without braces, the else does not belong to the first if!
 		assertEquals(x, 10);
 	}
 	
@@ -70,7 +69,7 @@ public class AboutConditionals {
 		}
 		// There are different opinions on where the curly braces go...
 		// But as long as you put them here. You avoid problems as seen above.
-		assertEquals(x, 2);
+		assertEquals(x,2);
 	} 
 	
 	@Koan 
@@ -117,7 +116,6 @@ public class AboutConditionals {
 			case 2:
 				result += "Two";
 		}
-		// Jumps to default because first case not triggered, continues to case 2
 		assertEquals(result, "Basic NothingTwo");
 	}
 	
@@ -126,10 +124,8 @@ public class AboutConditionals {
 		int i = 5;
 		// What happens if you remove the 'final' modifier?
 		// What does this mean for case values?
-
-		// if caseOne is not final, cannot compile; constant expression required
-		// my guess: required to prevent the switch constant being modified in the case statements,
-		// leading to unwanted side-effects
+		
+		// A: the switch statement complains that a constant value is required
 		final int caseOne = 1;
 		String result = "Basic ";
 		switch(i) {
@@ -145,11 +141,8 @@ public class AboutConditionals {
 	@Koan 
 	public void switchStatementSwitchValues() {
 		// Try different (primitive) types for 'c'
-		// Which types do compile?
-		// Does boxing work?
-
-		// works: byte, char, Byte,
-		// does not work: Char, String
+		// Which types do compile? A: char works, beyond that, there are no applicable primitive types
+		// Does boxing work? A: Yes
 		char c = 'a';
 		String result = "Basic ";
 		switch(c) {

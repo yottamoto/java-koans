@@ -8,12 +8,10 @@ public class AboutEnums {
 
 
 	enum Colors {
-		Red, Blue, Green, Yellow; // Q: what happens if you add a ; here? A: Nothing
-		// Q: What happens if you type Red() instead?
-		// A: I quess it calls the constructor of the enum, which is empty as a default?
+		Red, Blue, Green, Yellow // what happens if you add a ; here?
+		// What happens if you type Red() instead?
 	}
-
-
+	
 	@Koan
 	public void basicEnums() {
 		Colors blue = Colors.Blue;
@@ -27,24 +25,21 @@ public class AboutEnums {
 		Colors[] colorArray = Colors.values();
 		assertEquals(colorArray[2], Colors.Green);
 	}
-
+	
 	enum SkatSuits {
 		Clubs(12), Spades(11), Hearts(10), Diamonds(9);
 		SkatSuits(int v) { value = v; }
-		int value;
+		private int value;
 	}
-
+	
 	@Koan
 	public void enumsWithAttributes() {
 		// value is private but we still can access it. Why?
 		// Try moving the enum outside the AboutEnum class... What do you expect?
-		// What happens?: we have to explicitly import the enum, and value has to be public
-
-		// TODO: look into how enums have to be defined
-		// the koan run tool gets a bit wonky here
+		// What happens?
 		assertEquals(SkatSuits.Clubs.value > SkatSuits.Spades.value, true);
 	}
-
+	
 	enum OpticalMedia {
 		CD(650), DVD(4300), BluRay(50000);
 		OpticalMedia(int c) {
