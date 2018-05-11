@@ -22,7 +22,7 @@ public class AboutMethodPreference {
 
         public String doStuff(int... i) {
             return "int vararg";
-        }
+        }pwd
     }
 
     @Koan
